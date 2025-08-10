@@ -1,0 +1,71 @@
+name: customer
+
+packages:
+  - ./
+
+scripts:
+  init:
+    description: initialize and setup repo clone for development
+    exec: fvm dart pub get && fvm dart run husky install
+  run:test:
+    description: run the app with test environment
+    exec: fvm flutter run -t lib/main_test.dart --flavor fortest
+
+  run:dev:
+    description: run the app with dev environment
+    exec: fvm flutter run -t lib/main_dev.dart --flavor development
+
+  run:prod:
+    description: run the app with prod environment
+    exec: fvm flutter run -t lib/main_prod.dart --flavor production
+
+  fresh-run:test:
+    description: generate code and run the app with test environment
+    exec: fvm dart pub get && fvm dart run intl_utils:generate && fvm dart run build_runner build --delete-conflicting-outputs && fvm flutter run -t lib/main_test.dart --flavor fortest
+
+  fresh-run:dev:
+    description: generate code and run the app with dev environment
+    exec: fvm dart pub get && fvm flutter pub run intl_utils:generate && fvm dart run build_runner build --delete-conflicting-outputs && fvm flutter run -t lib/main_dev.dart --flavor development
+
+  fresh-run:prod:
+    description: generate code and run the app with prod environment
+    exec: fvm dart pub get && fvm flutter pub run intl_utils:generate && fvm dart run build_runner build --delete-conflicting-outputs && fvm flutter run -t lib/main_prod.dart --flavor production
+
+  web-run:test:
+    exec: fvm flutter build web -t lib/main_test.dart --no-tree-shake-icons && fvm flutter run -d chrome -t lib/main_test.dart --flavor fortest
+
+  web-run:dev:
+    exec: fvm flutter build web -t lib/main_dev.dart --no-tree-shake-icons && fvm flutter run -d chrome -t lib/main_dev.dart --flavor development --web-port=8080
+
+  web-run:prod:
+    exec: fvm flutter build web -t lib/main_prod.dart --no-tree-shake-icons && fvm flutter run -d chrome -t lib/main_prod.dart --flavor production --web-port=8080
+
+  analyze:
+    exec: fvm flutter analyze
+
+  test:
+    exec: fvm flutter test
+
+  test:golden:
+    description: run golden integration test
+    exec: fvm flutter test test/golden
+
+  update:golden:
+    description: update golden tests images
+    exec: fvm flutter test test/golden --update-goldens
+
+  generate:
+    description: generate code
+    exec: fvm dart run intl_utils:generate && fvm dart run build_runner build --delete-conflicting-outputs
+
+  clear-cache:
+    description: clear build-runner cache
+    exec: fvm flutter pub run build_runner clean
+
+  strings:
+    description: generate local strings
+    exec: fvm dart run intl_utils:generate
+
+  generate-launcher-icon:
+    description: generate Android and iOS launcher icons based on source image
+    exec: fvm flutter pub run flutter_launcher_icons
