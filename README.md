@@ -2,7 +2,7 @@
 
 A Flutter project built on the [Stacked](https://pub.dev/packages/stacked) framework — a powerful architecture solution for production-ready applications.
 
-Stacked provides amazing solutions for dependency injection, state management, routing, and more. However, I felt there were some core libraries missing that we use daily when building high-quality apps.
+Stacked provides amazing solutions for dependency injection, state management, routing, and more. However, there are some must-have libraries that are incredibly handy in development and ones we use daily when building high-quality apps.
 
 **Stacked_plus** includes these core libraries so you can get started building your next app quickly, without wasting time on setting up the base project structure.
 
