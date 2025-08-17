@@ -61,6 +61,8 @@ With **Stacked_plus**, you get a ready-to-use foundation that combines the power
 
 ## 🚀 Quick Start
 
+Add google-services in android/add
+
 This project uses **Melos** for managing packages and development scripts.  
 Make sure you have [Melos installed](https://melos.invertase.dev/getting-started).
 
@@ -69,13 +71,21 @@ Make sure you have [Melos installed](https://melos.invertase.dev/getting-started
 dart pub global activate melos
 
 # Install Flutter versions with FVM
-fvm install
+fvm install 3.*.*
 
 # Install dependencies & enable Git hooks
 melos run init
 
+#Install Husky
+npm install husky --save-dev
+Or
+yarn add husky --dev
+
+#Enable Enable Git hooks
+#npx husky install
+
 # Run code generation
-melos run build_runner
+melos generate
 
 # Run the app
 fvm flutter run

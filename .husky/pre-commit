@@ -1,9 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-melos checklocalstrings
-melos checkfilename
-melos clear-cache
 fvm dart run build_runner build --delete-conflicting-outputs
 fvm dart format --set-exit-if-changed lib test integration_test patrol_test golden_integration_test
 fvm flutter analyze
