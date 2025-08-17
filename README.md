@@ -82,7 +82,7 @@ Or
 yarn add husky --dev
 
 #Enable Enable Git hooks
-#npx husky install
+npx husky install
 
 # Run code generation
 melos generate
