@@ -66,6 +66,8 @@ linter:
     await_only_futures: true
     unawaited_futures: true
     lines_longer_than_80_chars: false
+    omit_obvious_property_types: false
+    sort_pub_dependencies: false
     do_not_use_environment: false
     prefer_relative_imports: false
     prefer_if_elements_to_conditional_expressions: false

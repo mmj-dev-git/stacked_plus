@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/app/app.locator.dart';
 import 'package:flutter_base/generated/l10n.dart';
 import 'package:flutter_base/services/analytics/analytics_service.dart';
+import 'package:flutter_base/services/connectivity/connectivity_service.dart';
+import 'package:flutter_base/services/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -21,6 +23,12 @@ import 'test_helpers.mocks.dart';
     MockSpec<AnalyticsService>(
       onMissingStub: OnMissingStub.returnDefault,
     ),
+    MockSpec<ConnectivityService>(
+      onMissingStub: OnMissingStub.returnDefault,
+    ),
+    MockSpec<SharedPreferencesService>(
+      onMissingStub: OnMissingStub.returnDefault,
+    ),
 // @stacked-mock-spec
   ],
 )
@@ -29,6 +37,8 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterAnalyticsServiceService();
+  getAndRegisterConnectivityService();
+  getAndRegisterSharedPreferencesService();
 // @stacked-mock-register
 }
 
@@ -90,6 +100,20 @@ MockAnalyticsService getAndRegisterAnalyticsServiceService() {
   _removeRegistrationIfExists<AnalyticsService>();
   final service = MockAnalyticsService();
   locator.registerSingleton<AnalyticsService>(service);
+  return service;
+}
+
+MockConnectivityService getAndRegisterConnectivityService() {
+  _removeRegistrationIfExists<ConnectivityService>();
+  final service = MockConnectivityService();
+  locator.registerSingleton<ConnectivityService>(service);
+  return service;
+}
+
+MockSharedPreferencesService getAndRegisterSharedPreferencesService() {
+  _removeRegistrationIfExists<SharedPreferencesService>();
+  final service = MockSharedPreferencesService();
+  locator.registerSingleton<SharedPreferencesService>(service);
   return service;
 }
 // @stacked-mock-create

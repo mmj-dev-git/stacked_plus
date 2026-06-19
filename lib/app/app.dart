@@ -1,6 +1,8 @@
 import 'package:flutter_base/common/feature_flags.dart';
 import 'package:flutter_base/generated/l10n.dart';
 import 'package:flutter_base/services/analytics/analytics_service.dart';
+import 'package:flutter_base/services/connectivity/connectivity_service.dart';
+import 'package:flutter_base/services/shared_preferences/shared_preferences_service.dart';
 import 'package:flutter_base/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:flutter_base/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:flutter_base/ui/views/home/home_view.dart';
@@ -22,6 +24,8 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: S),
     LazySingleton(classType: AnalyticsService),
+    LazySingleton(classType: ConnectivityService),
+    LazySingleton(classType: SharedPreferencesService),
 // @stacked-service
   ],
   bottomsheets: [

@@ -8,7 +8,9 @@ import 'package:flutter_base/app/app.dialogs.dart';
 import 'package:flutter_base/app/app.locator.dart';
 import 'package:flutter_base/app/app.router.dart';
 import 'package:flutter_base/app/setup_firebase.dart';
+import 'package:flutter_base/common/feature_flags.dart';
 import 'package:flutter_base/services/analytics/analytics_service.dart';
+import 'package:flutter_base/services/connectivity/connectivity_service.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -19,15 +21,21 @@ import 'generated/l10n.dart';
 
 Future<void> mainApp() async {
   WidgetsFlutterBinding.ensureInitialized();
+  AppConstants.currentEnvironment =
+      FlavorConfig.instance.variables['env'] as String? ?? Environment.test;
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
+  await locator<ConnectivityService>().initialise();
   // Initialize Firebase and configure Crashlytics
-  await setupFirebase();
+  final firebaseReady = await setupFirebase();
+  if (!firebaseReady) {
+    locator<FeatureFlag>().setFeature(
+      feature: FeatureType.firebaseAnalyticsFeature,
+    );
+  }
   // Initialize and configure Analytics
   await locator<AnalyticsService>().createIntegrations();
-
-  AppConstants.currentEnvironment = FlavorConfig.instance.variables['env'];
 
   runApp(
     DevicePreview(

@@ -69,3 +69,4 @@ scripts:
   generate-launcher-icon:
     description: generate Android and iOS launcher icons based on source image
     exec: fvm flutter pub run flutter_launcher_icons
+sdkPath: .fvm/flutter_sdk

@@ -103,3 +103,6 @@ coverage/
 # Other Generated Files
 # ============================================
 pubspec.lock
+
+# FVM Version Cache
+.fvm/

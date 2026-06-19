@@ -19,9 +19,7 @@ mixin _$AnalyticsEvent {
   String get eventName => throw _privateConstructorUsedError;
   Map<String, Object>? get params => throw _privateConstructorUsedError;
 
-  /// Create a copy of AnalyticsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AnalyticsEventCopyWith<AnalyticsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,8 +43,6 @@ class _$AnalyticsEventCopyWithImpl<$Res, $Val extends AnalyticsEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AnalyticsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,8 +81,6 @@ class __$$AnalyticsEventImplCopyWithImpl<$Res>
       _$AnalyticsEventImpl _value, $Res Function(_$AnalyticsEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AnalyticsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -144,9 +138,7 @@ class _$AnalyticsEventImpl implements _AnalyticsEvent {
   int get hashCode => Object.hash(
       runtimeType, eventName, const DeepCollectionEquality().hash(_params));
 
-  /// Create a copy of AnalyticsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AnalyticsEventImplCopyWith<_$AnalyticsEventImpl> get copyWith =>
@@ -163,11 +155,8 @@ abstract class _AnalyticsEvent implements AnalyticsEvent {
   String get eventName;
   @override
   Map<String, Object>? get params;
-
-  /// Create a copy of AnalyticsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AnalyticsEventImplCopyWith<_$AnalyticsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

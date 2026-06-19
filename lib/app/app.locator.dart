@@ -14,6 +14,8 @@ import 'package:stacked_shared/stacked_shared.dart';
 import '../common/feature_flags.dart';
 import '../generated/l10n.dart';
 import '../services/analytics/analytics_service.dart';
+import '../services/connectivity/connectivity_service.dart';
+import '../services/shared_preferences/shared_preferences_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -32,4 +34,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => S());
   locator.registerLazySingleton(() => AnalyticsService());
+  locator.registerLazySingleton(() => ConnectivityService());
+  locator.registerLazySingleton(() => SharedPreferencesService());
 }

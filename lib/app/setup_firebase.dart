@@ -1,14 +1,34 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-Future<void> setupFirebase() async {
+import 'firebase_config.dart';
+
+Future<bool> setupFirebase() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+  final options = FirebaseConfig.currentPlatform;
+  if (kIsWeb && options == null) {
+    debugPrint(
+      'Skipping Firebase initialization on web. Provide Firebase web options '
+      'with --dart-define values to enable Firebase.',
+    );
+    return false;
+  }
+
+  try {
+    await Firebase.initializeApp(options: options);
+  } on FirebaseException catch (error) {
+    debugPrint('Skipping Firebase initialization: ${error.message}');
+    return false;
+  }
+
+  if (kIsWeb) {
+    return true;
+  }
 
   // Capture Flutter framework errors
   FlutterError.onError = (FlutterErrorDetails errorDetails) {
@@ -27,4 +47,6 @@ Future<void> setupFirebase() async {
     );
     return true; // prevent default handler from running
   };
+
+  return true;
 }

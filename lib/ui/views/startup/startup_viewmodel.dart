@@ -5,13 +5,16 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class StartupViewModel extends BaseViewModel {
+  StartupViewModel({this.startupDelay = const Duration(seconds: 3)});
+
   final _navigationService = locator<NavigationService>();
-  final analytic = locator<AnalyticsService>();
+  final _analyticsService = locator<AnalyticsService>();
+  final Duration startupDelay;
 
   // Place anything here that needs to happen before we get into the application
-  Future runStartupLogic() async {
-    await Future.delayed(const Duration(seconds: 3));
-    await analytic.performAction('AppStartup');
+  Future<void> runStartupLogic() async {
+    await Future<void>.delayed(startupDelay);
+    await _analyticsService.performAction('AppStartup');
 
     // This is where you can make decisions on where your app should navigate when
     // you have custom startup logic

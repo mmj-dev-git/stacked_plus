@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/generated/l10n.dart';
 import 'package:flutter_base/ui/common/app_colors.dart';
+import 'package:flutter_base/ui/common/base_view.dart';
 import 'package:flutter_base/ui/common/ui_helpers.dart';
 import 'package:stacked/stacked.dart';
 
@@ -11,8 +12,10 @@ class HomeView extends StackedView<HomeViewModel> {
 
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
-    return Scaffold(
-      body: SafeArea(
+    return DgBaseView(
+      enablePadding: false,
+      enableScroll: false,
+      child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Center(
